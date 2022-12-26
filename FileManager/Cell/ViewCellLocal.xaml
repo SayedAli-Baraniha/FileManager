@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cell:LocalCell  xmlns:cell="clr-namespace:FileManager.Cell"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:internals="http://xamarin.com/schemas/2014/forms"
+                 xmlns:controls="clr-namespace:FileManager.ViewControler"
+                 x:Class="FileManager.Cell.ViewCellLocal">
+    <internals:Grid RowDefinitions="70" FlowDirection="RightToLeft">
+        <internals:Grid ColumnDefinitions="80,*" BackgroundColor="Transparent" HeightRequest="95" VerticalOptions="StartAndExpand">
+            <controls:CustomFrame x:Name="FrmOne" Padding="0" BackgroundColor="White" HasShadow="False" CornerRadius="25,14,25,14">
+                <internals:Grid RowDefinitions="*,30">
+                    <internals:ImageButton IsEnabled="False" BackgroundColor="Transparent" TranslationY="10" TranslationX="2" Padding="16" Source="File" />
+                    <internals:Label internals:Grid.Row="1" FontAttributes="None" HorizontalOptions="CenterAndExpand"  TranslationY="-2" TranslationX="2" HorizontalTextAlignment="Center" FontSize="10" TextColor="#8088A0" Text="{internals:Binding CountItem}"/>
+                </internals:Grid>
+            </controls:CustomFrame>
+
+            <internals:Frame TranslationX="-1" Margin="1,0,0,0" Padding="0" BackgroundColor="Transparent" HasShadow="False" CornerRadius="25" internals:Grid.Column="1">
+                <internals:Grid RowDefinitions="*,*" RowSpacing="0">
+                    <internals:StackLayout Margin="0" Spacing="0" BackgroundColor="#3F4F7A"/>
+                    <internals:StackLayout Margin="0" Spacing="0" internals:Grid.Row="1" BackgroundColor="#2B3960"/>
+                    <internals:ImageButton HorizontalOptions="EndAndExpand" Padding="10,10,18,10" Source="PenEdit" BackgroundColor="Transparent" />
+                    <internals:ImageButton HorizontalOptions="EndAndExpand" internals:Grid.Row="1" Padding="10,10,18,10" Source="Upload" BackgroundColor="Transparent" />
+                </internals:Grid>
+            </internals:Frame>
+            <controls:CustomFrame x:Name="FrmTwo" Padding="0" BackgroundColor="White" HasShadow="False" CornerRadius="14,25,14,25" internals:Grid.Column="1">
+                <controls:CustomFrame.GestureRecognizers>
+                    <internals:PanGestureRecognizer  PanUpdated="PanGestureRecognizer_PanUpdated" />
+                </controls:CustomFrame.GestureRecognizers>
+                <internals:Grid ColumnDefinitions="*,47">
+                    <internals:StackLayout VerticalOptions="CenterAndExpand" Margin="20,0,0,0">
+                        <internals:Label FontAttributes="Bold" FontSize="16" TextColor="#242F4F" Text="{internals:Binding Name}"/>
+                        <internals:Label FontAttributes="None" FontSize="13" TextColor="#8088A0" Text="{internals:Binding DataCreated}"/>
+                    </internals:StackLayout>
+                    <internals:ImageButton Margin="0,0,8,0" Clicked="ImageButton_Clicked" Source="Slider" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" internals:Grid.Column="1" />
+                </internals:Grid>
+            </controls:CustomFrame>
+        </internals:Grid>
+    </internals:Grid>
+</cell:LocalCell>

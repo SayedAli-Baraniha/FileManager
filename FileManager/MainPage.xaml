@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:FileManager.ViewControler" xmlns:controls1="clr-namespace:Xamarin.Forms.Controls;assembly=CircularProgressBar"
+             x:Class="FileManager.MainPage" BackgroundColor="#2B3960">
+    <AbsoluteLayout BackgroundColor="#000025" PropertyChanged="AbsoluteLayout_PropertyChanged">
+        <AbsoluteLayout.GestureRecognizers>
+            <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated" />
+        </AbsoluteLayout.GestureRecognizers>
+        <StackLayout x:Name="ViewDet" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" />
+        <Grid x:Name="LayTree"  AbsoluteLayout.LayoutBounds="0,0,1,1" TranslationX="6" TranslationY="12" FlowDirection="RightToLeft" AbsoluteLayout.LayoutFlags="All" >
+            <StackLayout  WidthRequest="95"   HorizontalOptions="EndAndExpand">
+                <ImageButton Source="BaranBlR" BackgroundColor="Transparent" />
+                <ListView SelectionMode="Single" RowHeight="85"  FlowDirection="RightToLeft"  x:Name="Collections">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame x:Name="ViewFrames" BackgroundColor="Transparent" CornerRadius="0"  WidthRequest="65" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="0">
+                                    <Grid ColumnDefinitions="65" RowSpacing="0" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="65"/>
+                                            <RowDefinition Height="15"/>
+                                            <RowDefinition Height="15"/>
+                                        </Grid.RowDefinitions>
+                                        <ImageButton Grid.Row="0" IsVisible="{Binding IsView}" VerticalOptions="CenterAndExpand" Source="CircleGrow" HorizontalOptions="CenterAndExpand" WidthRequest="65" HeightRequest="65" IsEnabled="False"  Aspect="AspectFit" BackgroundColor="Transparent" CornerRadius="0"  />
+                                        <StackLayout IsVisible="{Binding IsNew}">
+                                            <ImageButton  VerticalOptions="FillAndExpand" Padding="13" Source="AddGlow" TranslationX="0" TranslationY="1"  HorizontalOptions="FillAndExpand" Aspect="AspectFit" BackgroundColor="Transparent" CornerRadius="0"   BindingContext="{Binding Source={x:Reference Collections}, Path=BindingContext}" Command="{Binding NewGroupCommand}"  CommandParameter="{Binding Source={x:Reference ViewFrames}, Path=BindingContext}"/>
+                                        </StackLayout>
+                                        <ImageButton Grid.Row="0" Margin="9" TranslationY="-3" VerticalOptions="CenterAndExpand" Source="{Binding ImagePathGroup}" HorizontalOptions="CenterAndExpand" WidthRequest="55" HeightRequest="55" IsEnabled="False"  Aspect="AspectFill" BackgroundColor="Transparent" CornerRadius="50"  />
+                                        <Label  Grid.Row="1" TranslationY="-12" FontSize="9"  FontFamily="KalamehR" FontAttributes="Bold"  Text="{Binding NameGroup}"  TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                        <Label Grid.Row="2" TranslationY="-12" FontSize="7" Text="{Binding CountPerson}"   FontFamily="KalamehNR"   TextColor="Gray" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Start"/>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+        <Frame x:Name="FrameGFT"  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#ED7C5E"  Padding="0" HasShadow="False" >
+            <Grid FlowDirection="RightToLeft" ColumnDefinitions="*,180">
+                <StackLayout Grid.Column="1" Spacing="0" BackgroundColor="Transparent" Margin="0,20,0,0">
+                    <StackLayout.GestureRecognizers>
+                        <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated" />
+                    </StackLayout.GestureRecognizers>
+                    <ImageButton x:Name="PrgN" Source="PrgB"   Opacity="0.4" IsEnabled="False" Aspect="AspectFit" BackgroundColor="Transparent" Margin="20,0,0,0"  />
+                    <ImageButton x:Name="Uptd" Source="Uptd" Opacity="0.4" IsEnabled="False" BackgroundColor="Transparent" Margin="10,0,10,0" TranslationX="-8" TranslationY="-22"/>
+                    <ImageButton x:Name="Anls" Source="Anal" Opacity="0.4" IsEnabled="False"  BackgroundColor="Transparent" Margin="0,0,0,0" TranslationY="-32"/>
+                    <ImageButton x:Name="Excl" Source="Exc" Opacity="0.4" IsEnabled="False"  BackgroundColor="Transparent" Margin="17,0,5,0" TranslationY="-50"/>
+                    <ImageButton Source="UncheckW" BackgroundColor="Transparent" Margin="75,0" TranslationY="-41" Rotation="45" />
+                </StackLayout>
+            </Grid>
+        </Frame>
+        <Frame x:Name="MainVi" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Padding="0" CornerRadius="0"  BackgroundColor="#2B3960" FlowDirection="LeftToRight">
+            <AbsoluteLayout>
+                <Grid TranslationY="20" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                    <Grid HeightRequest="400"  VerticalOptions="StartAndExpand" RowDefinitions="80,100,*" >
+                        <StackLayout x:Name="Sw" Grid.Row="1" Spacing="2" Margin="30,0" TranslationY="-10">
+                            <Label FontAttributes="None" FontSize="20" TextColor="#8088A0" Text="Welcome to"/>
+                            <Label FontAttributes="Bold" FontSize="30" TextColor="White" Text="File Manager"/>
+                        </StackLayout>
+                        <Grid  x:Name="Gty" ColumnDefinitions="1.2*,*" Grid.Row="2">
+                            <Frame TranslationX="34" Padding="0" Margin="0,0,0,15" TranslationY="-30" CornerRadius="40" BackgroundColor="#364671" HasShadow="False" BorderColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <StackLayout Margin="30,35" Spacing="4">
+                                    <Label FontAttributes="Bold" FontSize="26" TextColor="White" Text="30gb"/>
+                                    <Label FontAttributes="None" FontSize="15" TextColor="White" Text="Total:100gb"/>
+                                    <Grid VerticalOptions="EndAndExpand" TranslationX="-2" RowDefinitions="*,*" ColumnDefinitions="15,*" RowSpacing="5">
+                                        <Label Grid.Column="1" FontAttributes="Bold" FontSize="12" TextColor="#ED7C5E" Text="Used"/>
+                                        <Label Grid.Column="1" Grid.Row="1" FontAttributes="Bold" FontSize="12" TextColor="#19EEFC" Text="Available"/>
+                                        <BoxView VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="10" CornerRadius="5" HeightRequest="10" Color="#ED7C5E"/>
+                                        <BoxView Grid.Row="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="10" CornerRadius="5" HeightRequest="10" Color="#19EEFC"/>
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+                            <ImageButton Scale="1.15" BackgroundColor="Transparent" TranslationX="-40" Source="Circle" Grid.Column="1" TranslationY="-40" BorderColor="Transparent" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <ScrollView x:Name="Scrll" Scrolled="ScrollView_Scrolled" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
+                    <controls:CustomFrame x:Name="Cor"  Padding="0" Margin="0,400,0,0" CornerRadius="40,40,0,0" BackgroundColor="#F6F6FC" HasShadow="False" TranslationY="20" HeightRequest="800" VerticalOptions="Start" Grid.Row="1">
+                        <Grid >
+                            <Grid x:Name="ViewFolder"  RowDefinitions="50,*" Margin="30,30,30,0">
+                                <Grid ColumnDefinitions="Auto,*,45,45" ColumnSpacing="0">
+                                    <Label FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="22" BackgroundColor="Transparent" TextColor="#242F4F" Text="Work File"/>
+                                    <Button BackgroundColor="Transparent" Clicked="BtnS_Clicked" />
+                                    <ImageButton x:Name="BtnS" Clicked="BtnS_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" WidthRequest="30" TranslationX="5" HeightRequest="30" Padding="5" Source="ToDown" BackgroundColor="Transparent" Grid.Column="1"/>
+                                    <Frame x:Name="BtnVerticMove" BorderColor="Transparent" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="40" HeightRequest="40" HasShadow="False" Padding="0" CornerRadius="15" BackgroundColor="White" Grid.Column="2"/>
+                                    <ImageButton x:Name="BtnVertic" Clicked="BtnVertic_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="38" HeightRequest="38" Padding="12" CornerRadius="15" Source="Change" BackgroundColor="Transparent" Grid.Column="2"/>
+                                    <ImageButton x:Name="BtnHoriz" Clicked="BtnHoriz_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="44" HeightRequest="44" Padding="12" Source="Menu" BackgroundColor="Transparent" Grid.Column="3"/>
+                                </Grid>
+                                <StackLayout Grid.Row="1" Margin="5,0" >
+                                    <StackLayout TranslationY="17" Spacing="20">
+                                        <Grid ColumnDefinitions="80,*" BackgroundColor="Transparent" HeightRequest="95" VerticalOptions="StartAndExpand">
+                                            <controls:CustomFrame x:Name="FrmOne" Padding="0" BackgroundColor="White" HasShadow="False" CornerRadius="25,14,25,14">
+                                                <Grid RowDefinitions="*,30">
+                                                    <ImageButton IsEnabled="False" BackgroundColor="Transparent" TranslationY="10" TranslationX="2" Padding="16" Source="File" />
+                                                    <Label Grid.Row="1" FontAttributes="None" HorizontalOptions="CenterAndExpand"  TranslationY="-2" TranslationX="2" HorizontalTextAlignment="Center" FontSize="10" TextColor="#8088A0" Text="32 Items"/>
+                                                </Grid>
+                                            </controls:CustomFrame>
+                                            
+                                            <Frame TranslationX="-1" Margin="1,0,0,0" Padding="0" BackgroundColor="Transparent" HasShadow="False" CornerRadius="25" Grid.Column="1">
+                                                <Grid RowDefinitions="*,*" RowSpacing="0">
+                                                    <StackLayout Margin="0" Spacing="0" BackgroundColor="#3F4F7A"/>
+                                                    <StackLayout Margin="0" Spacing="0" Grid.Row="1" BackgroundColor="#2B3960"/>
+                                                    <ImageButton HorizontalOptions="EndAndExpand" Padding="10,10,18,10" Source="PenEdit" BackgroundColor="Transparent" />
+                                                    <ImageButton HorizontalOptions="EndAndExpand" Grid.Row="1" Padding="10,10,18,10" Source="Upload" BackgroundColor="Transparent" />
+                                                </Grid>
+                                            </Frame>
+                                            <controls:CustomFrame x:Name="FrmTwo" Padding="0" BackgroundColor="White" HasShadow="False" CornerRadius="14,25,14,25" Grid.Column="1">
+                                                <controls:CustomFrame.GestureRecognizers>
+                                                    <PanGestureRecognizer  PanUpdated="PanGestureRecognizer_PanUpdated_1" />
+                                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                                </controls:CustomFrame.GestureRecognizers>
+                                                <Grid ColumnDefinitions="*,47">
+                                                    <StackLayout VerticalOptions="CenterAndExpand" Margin="20,0,0,0">
+                                                        <Label FontAttributes="Bold" FontSize="16" TextColor="#242F4F" Text="Illustration"/>
+                                                        <Label FontAttributes="None" FontSize="13" TextColor="#8088A0" Text="created 23 April 2020"/>
+                                                    </StackLayout>
+                                                    <ImageButton Margin="0,0,8,0" Clicked="ImageButton_Clicked_5" Source="Slider" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" Grid.Column="1" />
+                                                </Grid>
+                                            </controls:CustomFrame>
+                                            <Button Grid.Column="0" Clicked="Button_Clicked_1" BackgroundColor="Transparent" />
+                                        </Grid>
+                                        <Grid ColumnDefinitions="80,*" BackgroundColor="Transparent" HeightRequest="95" VerticalOptions="StartAndExpand">
+                                            <controls:CustomFrame x:Name="FrmOneS" Padding="0" BackgroundColor="White" HasShadow="False" CornerRadius="25,14,25,14">
+                                                <Grid RowDefinitions="*,30">
+                                                    <ImageButton IsEnabled="False" BackgroundColor="Transparent" TranslationY="10" TranslationX="2" Padding="16" Source="File" />
+                                                    <Label Grid.Row="1" FontAttributes="None" HorizontalOptions="CenterAndExpand"  TranslationY="-2" TranslationX="2" HorizontalTextAlignment="Center" FontSize="10" TextColor="#8088A0" Text="42 Items"/>
+                                                </Grid>
+                                            </controls:CustomFrame>
+                                            
+                                            <Frame TranslationX="-1" Margin="1,0,0,0" Padding="0" BackgroundColor="Transparent" HasShadow="False" CornerRadius="25" Grid.Column="1">
+                                                <Grid RowDefinitions="*,*" RowSpacing="0">
+                                                    <StackLayout Margin="0" Spacing="0" BackgroundColor="#3F4F7A"/>
+                                                    <StackLayout Margin="0" Spacing="0" Grid.Row="1" BackgroundColor="#2B3960"/>
+                                                    <ImageButton HorizontalOptions="EndAndExpand" Padding="10,10,18,10" Source="PenEdit" BackgroundColor="Transparent" />
+                                                    <ImageButton HorizontalOptions="EndAndExpand" Grid.Row="1" Padding="10,10,18,10" Source="Upload" BackgroundColor="Transparent" />
+                                                </Grid>
+                                            </Frame>
+                                            <controls:CustomFrame x:Name="FrmTwoS" Padding="0" BackgroundColor="White" HasShadow="False" CornerRadius="14,25,14,25" Grid.Column="1">
+                                                <controls:CustomFrame.GestureRecognizers>
+                                                    <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated_2" />
+                                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                                                </controls:CustomFrame.GestureRecognizers>
+                                                <Grid ColumnDefinitions="*,47">
+                                                    <StackLayout VerticalOptions="CenterAndExpand" Margin="20,0,0,0">
+                                                        <Label FontAttributes="Bold" FontSize="16" TextColor="#242F4F" Text="UI Design"/>
+                                                        <Label FontAttributes="None" FontSize="13" TextColor="#8088A0" Text="created 13 February 2020"/>
+                                                    </StackLayout>
+                                                    <ImageButton Margin="0,0,8,0" Clicked="ImageButton_Clicked_6" Source="Slider" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" Grid.Column="1" />
+                                                </Grid>
+                                            </controls:CustomFrame>
+                                            <Button Grid.Column="0" Clicked="Button_Clicked_2" BackgroundColor="Transparent"  />
+                                        </Grid>
+                                        <Grid ColumnDefinitions="80,*" BackgroundColor="Transparent" HeightRequest="95" VerticalOptions="StartAndExpand">
+                                            <controls:CustomFrame Padding="0" BackgroundColor="White" HasShadow="False" CornerRadius="25,14,25,14">
+                                                <Grid RowDefinitions="*,30">
+                                                    <ImageButton IsEnabled="False" BackgroundColor="Transparent" TranslationY="10" TranslationX="2" Padding="16" Source="File" />
+                                                    <Label Grid.Row="1" FontAttributes="None" HorizontalOptions="CenterAndExpand"  TranslationY="-2" TranslationX="2" HorizontalTextAlignment="Center" FontSize="10" TextColor="#8088A0" Text="96 Items"/>
+                                                </Grid>
+                                            </controls:CustomFrame>
+                                            <controls:CustomFrame Padding="0" BackgroundColor="White" HasShadow="False" CornerRadius="14,25,14,25" Grid.Column="1">
+                                                <Grid ColumnDefinitions="*,47">
+                                                    <StackLayout VerticalOptions="CenterAndExpand" Margin="20,0,0,0">
+                                                        <Label FontAttributes="Bold" FontSize="16" TextColor="#242F4F" Text="Prototype"/>
+                                                        <Label FontAttributes="None" FontSize="13" TextColor="#8088A0" Text="created 23 April 2020"/>
+                                                    </StackLayout>
+                                                    <ImageButton Margin="0,0,8,0" Source="Slider" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" Grid.Column="1" />
+                                                </Grid>
+                                            </controls:CustomFrame>
+                                        </Grid>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                            <Grid RowDefinitions="100,75,*" IsVisible="false" x:Name="ViewFile" >
+                                <Grid ColumnDefinitions="100,*,42,42,18" Margin="0,23,0,0" >
+                                    <StackLayout VerticalOptions="CenterAndExpand" TranslationX="30" HorizontalOptions="StartAndExpand">
+                                        <Label Text="47 Items" FontSize="13" TextColor="#8088A0"  />
+                                        <Label FontAttributes="Bold" FontSize="22" TextColor="#242F4F" TranslationY="-3" Text="UI Design"  />
+                                    </StackLayout>
+                                    <Frame x:Name="BtnVerticMoveS" BorderColor="Transparent" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="42" HeightRequest="42" HasShadow="False" Padding="0" CornerRadius="15" BackgroundColor="#E5E7EC" Grid.Column="2"/>
+                                    <ImageButton x:Name="BtnVerticS" Clicked="BtnVerticS_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="45" HeightRequest="45" Padding="9" CornerRadius="15" Source="Folder" BackgroundColor="Transparent" Grid.Column="2"/>
+                                    <ImageButton x:Name="BtnHorizS" Clicked="BtnHorizS_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="45" HeightRequest="45" Padding="8" TranslationX="-2" TranslationY="-1" Source="Form" BackgroundColor="Transparent" Grid.Column="3"/>
+                                </Grid>
+                                <Grid Grid.Row="1" Margin="25,5,0,5" ColumnDefinitions="*,70,17">
+                                    <controls:CustomFrame Padding="0" Margin="0,0,5,0" BackgroundColor="#E7E7F2" HasShadow="False" CornerRadius="25,14,25,14">
+                                        <Grid ColumnDefinitions="55,*">
+                                            <ImageButton IsEnabled="False" BackgroundColor="Transparent" Margin="10,0,0,0" TranslationY="-1" Padding="7" Source="SearchFile" />
+                                            <Label Grid.Column="1" FontAttributes="None" HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" TranslationY="0" TranslationX="-2" HorizontalTextAlignment="Start" FontSize="16" TextColor="#ACB1C1" Text="Search a File"/>
+                                        </Grid>
+                                    </controls:CustomFrame>
+                                    <controls:CustomFrame Scale="0.92" Padding="0" Margin="5,0,0,0" Grid.Column="1" BackgroundColor="#2B3960" HasShadow="False" CornerRadius="14,25,14,25">
+                                        <ImageButton IsEnabled="False" BackgroundColor="Transparent" Padding="20" TranslationY="0" Source="SettgFile" />
+                                    </controls:CustomFrame>
+                                </Grid>
+
+                            </Grid>
+                        </Grid>
+                    </controls:CustomFrame>
+                </ScrollView>
+                <ImageButton TranslationY="35" x:Name="ImageSelf" Clicked="ImageButton_Clicked_1" CornerRadius="20" TranslationX="-20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,0,66,66" WidthRequest="50" HeightRequest="50" BackgroundColor="#F6F6FC" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" />
+                <ImageButton Source="TrboMenu" TranslationY="35" x:Name="MenuSuper" Clicked="BtnPls_Clicked" TranslationX="20" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="0,0,66,66" WidthRequest="50" Padding="5" HeightRequest="45" BackgroundColor="Transparent" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" />
+                <ImageButton x:Name="BtnPls" TranslationX="-30" Clicked="ImageButton_Clicked" TranslationY="-30" BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,1,66,66" Source="AddNew" />
+                <Grid x:Name="ViewAdd" IsVisible="False" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                    <Button Clicked="Button_Clicked" BackgroundColor="#CC0A0D17" />
+                    <Frame x:Name="Sqa"  Padding="0" CornerRadius="40" HeightRequest="100" Margin="30,0" VerticalOptions="EndAndExpand">
+                        <Grid ColumnDefinitions="85,*,70">
+                            <ImageButton Source="Close" Grid.Column="2" Padding="10" CornerRadius="20" BackgroundColor="#E5E7EC" WidthRequest="41" HeightRequest="41" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TranslationX="-10" />
+                            <StackLayout VerticalOptions="CenterAndExpand" Grid.Column="1" Spacing="0">
+                                <Label x:Name="Jija" FontAttributes="Bold" FontSize="16" TextColor="#242F4F" Text="{Binding PresentOne}"/>
+                                <Label x:Name="Ui" FontAttributes="None" FontSize="14" TextColor="#ADB1C1" Text="{Binding PresentView}" />
+                            </StackLayout>
+                            <controls1:CircularProgressBar x:Name="Prgress" Color="#242F4F" Stroke="10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Progress="0" WidthRequest="55" HeightRequest="55" Easing="True" />
+                            <Label x:Name="KPrgress"  Text="{Binding Present}" BackgroundColor="Transparent" FontSize="14" FontAttributes="Bold" TextColor="#242F4F" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                        </Grid>
+                    </Frame>
+                    <controls:CustomFrame x:Name="Jij" BackgroundColor="White" CornerRadius="40,40,0,0" HeightRequest="270" VerticalOptions="End">
+                        <StackLayout Margin="0,7,0,0">
+                            <Label FontAttributes="Bold" TranslationY="-10"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="20" BackgroundColor="Transparent" TextColor="#242F4F" Text="Upload New"/>
+                            <Grid RowDefinitions="*,82,*,82,*" VerticalOptions="FillAndExpand" ColumnDefinitions="*,*,*" TranslationY="-55" Margin="15,45,15,0">
+                                <ImageButton Clicked="ImageButton_Clicked_2" Grid.Row="1" Margin="12,6" Source="Folder"  HeightRequest="77" CornerRadius="25" WidthRequest="88" Padding="20" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="#FFF1ED" />
+                                <ImageButton Clicked="ImageButton_Clicked_3" Grid.Row="1" Margin="12,6" Grid.Column="1" Source="Camera"  HeightRequest="77" CornerRadius="25" WidthRequest="88" Padding="20" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="#E8FDF5" />
+                                <ImageButton Clicked="ImageButton_Clicked_4" Grid.Row="1" Margin="12,6" Grid.Column="2" Source="Presentation"  HeightRequest="77" CornerRadius="25" WidthRequest="88" Padding="20" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="#FAECFF" />
+
+                                <ImageButton Margin="12,6" TranslationY="35" Grid.Row="3" Grid.Column="0" Source="Document"  HeightRequest="77" CornerRadius="25" WidthRequest="88" Padding="20" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="#FFF6E0" />
+                                <ImageButton Margin="12,6" TranslationY="35" Grid.Row="3" Grid.Column="1" Source="Form"  HeightRequest="77" CornerRadius="25" WidthRequest="88" Padding="20" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="#ECF3FF" />
+                                <ImageButton Margin="12,6" TranslationY="35" Grid.Row="3" Grid.Column="2" Source="more"  HeightRequest="77" CornerRadius="25" WidthRequest="88" Padding="20" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="#F3F4F7" />
+
+                                <Label Margin="0,6" Grid.Row="1" FontAttributes="None" FontSize="13" TranslationY="30" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" TextColor="#8088A0" Text="Folder"/>
+                                <Label  Margin="0,6" Grid.Row="1" Grid.Column="1" FontAttributes="None" FontSize="13" TranslationY="30" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" TextColor="#8088A0" Text="Camera"/>
+                                <Label  Margin="0,6" Grid.Row="1" Grid.Column="2" FontAttributes="None" FontSize="13" TranslationY="30" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" TextColor="#8088A0" Text="Presentation"/>
+
+                                <Label  Margin="0,6" Grid.Row="3" FontAttributes="None" FontSize="13" TranslationY="65" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" TextColor="#8088A0" Text="Document"/>
+                                <Label  Margin="0,6" Grid.Row="3" Grid.Column="1" FontAttributes="None" FontSize="13" TranslationY="65" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" TextColor="#8088A0" Text="Form"/>
+                                <Label  Margin="0,6" Grid.Row="3" Grid.Column="2" FontAttributes="None" FontSize="13" TranslationY="65" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" TextColor="#8088A0" Text="Other"/>
+                            </Grid>
+                        </StackLayout>
+                    </controls:CustomFrame>
+
+                </Grid>
+            </AbsoluteLayout>
+        </Frame>
+    </AbsoluteLayout>
+
+
+
+
+    
+
+</ContentPage>
